@@ -14,9 +14,18 @@ app.use(cors({
 app.use(express.json());
 
 // Connect DB
+if (!process.env.MONGO_URI) {
+    console.error("❌ FATAL ERROR: MONGO_URI is not defined.");
+    console.error("Please set the MONGO_URI environment variable in your dashboard (Render/Railway).");
+    process.exit(1);
+}
+
 mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => console.log(err));
+    .then(() => console.log('✅ MongoDB Connected'))
+    .catch(err => {
+        console.error('❌ MongoDB Connection Error:', err.message);
+        process.exit(1);
+    });
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));

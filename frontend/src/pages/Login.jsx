@@ -34,7 +34,7 @@ const Login = () => {
         } catch (err) {
             console.error("Login Error:", err);
             const errorMsg = err.response?.data?.msg || err.message || 'Invalid credentials. Please try again.';
-            setError(errorMsg);
+            setError(`${errorMsg} (API: ${API_URL})`);
             setLoading(false);
         }
     };

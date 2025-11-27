@@ -91,7 +91,13 @@ router.post('/', auth, async (req, res) => {
         }
 
         const shortCode = Math.random().toString(36).substring(2, 8);
-        const redirectUrl = `http://localhost:${process.env.PORT || 5000}/l/${shortCode}`;
+        
+        // Use production URL in production, otherwise localhost
+        const BASE_URL = process.env.NODE_ENV === 'production' 
+            ? 'https://qr-enwn.onrender.com' 
+            : `http://localhost:${process.env.PORT || 5000}`;
+            
+        const redirectUrl = `${BASE_URL}/l/${shortCode}`;
 
         // Generate custom QR code with options including logo
         const customization = qrCustomization || suggestQRCustomization(label, url);

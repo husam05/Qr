@@ -8,7 +8,10 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const API_URL = import.meta.env.VITE_API_URL;
+    
+    // Force the correct production URL to bypass environment variable issues
+    const API_URL = 'https://qr-enwn.onrender.com'; 
+    // const API_URL = import.meta.env.VITE_API_URL;
 
     const handleSubmit = async (e) => {
         e.preventDefault();

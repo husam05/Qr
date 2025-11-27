@@ -24,6 +24,10 @@ if (!process.env.MONGO_URI) {
     process.exit(1);
 }
 
+if (!process.env.JWT_SECRET) {
+    console.warn("⚠️ WARNING: JWT_SECRET is not defined. Using insecure fallback. Please set this in production!");
+}
+
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('✅ MongoDB Connected'))
     .catch(err => {

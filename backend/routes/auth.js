@@ -4,6 +4,13 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
+// Use environment variable or fallback for development/quick-fix
+const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret_key_2025';
+
+if (!process.env.JWT_SECRET) {
+    console.warn('WARNING: JWT_SECRET is not defined in environment variables. Using fallback secret.');
+}
+
 // Register
 router.post('/register', async (req, res) => {
     try {
@@ -33,13 +40,13 @@ router.post('/register', async (req, res) => {
         await user.save();
 
         const payload = { user: { id: user.id, role: user.role } };
-        jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
+        jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
             if (err) throw err;
             res.json({ token });
         });
     } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error');
+        console.error('Register Error:', err.message);
+        res.status(500).json({ msg: 'Server error during registration' });
     }
 });
 
@@ -62,13 +69,13 @@ router.post('/login', async (req, res) => {
         }
 
         const payload = { user: { id: user.id, role: user.role } };
-        jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
+        jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
             if (err) throw err;
             res.json({ token });
         });
     } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error');
+        console.error('Login Error:', err.message);
+        res.status(500).json({ msg: 'Server error during login. Check backend logs.' });
     }
 });
 
@@ -80,7 +87,7 @@ router.get('/me', auth, async (req, res) => {
         res.json(user);
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server error');
+        res.status(500).json({ msg: 'Server error fetching user' });
     }
 });
 

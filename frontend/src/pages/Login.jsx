@@ -32,7 +32,9 @@ const Login = () => {
                 }
             }, 500);
         } catch (err) {
-            setError(err.response?.data?.msg || 'Invalid credentials. Please try again.');
+            console.error("Login Error:", err);
+            const errorMsg = err.response?.data?.msg || err.message || 'Invalid credentials. Please try again.';
+            setError(errorMsg);
             setLoading(false);
         }
     };

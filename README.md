@@ -1,11 +1,21 @@
 # QRLinkHub 🔗
 
-A full-stack QR Code Link Management System with user authentication, link tracking, and admin dashboard.
+A full-stack QR Code Link Management System with user authentication, link tracking, admin dashboard, **AI-powered features**, and **advanced QR customization with social media templates**.
 
-## ✨ Tech Stack
+## ✨ Key Features
+- 🎨 **Advanced QR Customization** - Custom colors, icons, and platform templates
+- 📱 **Social Media Quick Setup** - One-click setup for 12 platforms (Instagram, TikTok, Facebook, X, LinkedIn, YouTube, GitHub, WhatsApp, Telegram, Snapchat, Pinterest)
+- 🤖 **AI-Powered Suggestions** - Smart label suggestions and QR styling based on URL analysis
+- 📊 **Analytics & Insights** - Track clicks, analyze patterns, and get actionable recommendations
+- 👥 **Admin Dashboard** - Full user management with AI-powered insights
+- 🔐 **Secure Authentication** - JWT-based auth with role-based access
+- 📦 **Link Management** - Create, edit, delete links with custom QR codes
+
+## 🛠 Tech Stack
 - **Backend**: Node.js, Express, MongoDB, Mongoose, JWT
 - **Frontend**: React, Vite, Vanilla CSS (Premium Design)
-- **QR Generation**: qrcode npm package
+- **QR Generation**: qrcode npm package with custom styling
+- **AI Features**: Local processing (zero external API costs)
 
 ## 📋 Prerequisites
 - Node.js (v20.18+) - **Already included in `nodejs/` folder**

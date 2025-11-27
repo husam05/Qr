@@ -47,12 +47,19 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
+        console.log(`Login attempt for: ${email}`);
 
         let user = await User.findOne({ email });
-        if (!user) return res.status(400).json({ msg: 'Invalid Credentials' });
+        if (!user) {
+            console.log('User not found');
+            return res.status(400).json({ msg: 'User not found' });
+        }
 
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) return res.status(400).json({ msg: 'Invalid Credentials' });
+        if (!isMatch) {
+            console.log('Password mismatch');
+            return res.status(400).json({ msg: 'Password incorrect' });
+        }
 
         const payload = { user: { id: user.id, role: user.role } };
         jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {

@@ -93,7 +93,9 @@ const SocialQuickSetup = ({ onComplete }) => {
 
         setIsLoading(true);
         try {
-            const API_URL = import.meta.env.VITE_API_URL;
+            // Force correct API URL
+            const API_URL = 'https://qr-enwn.onrender.com';
+            // const API_URL = import.meta.env.VITE_API_URL;
             const token = localStorage.getItem('token');
             
             // Get template from backend

@@ -18,7 +18,11 @@ const Admin = () => {
     const [userLinks, setUserLinks] = useState({});
     const [loadingLinks, setLoadingLinks] = useState({});
     const navigate = useNavigate();
-    const API_URL = import.meta.env.VITE_API_URL;
+    
+    // Force correct API URL
+    const API_URL = 'https://qr-enwn.onrender.com';
+    // const API_URL = import.meta.env.VITE_API_URL;
+
     const token = localStorage.getItem('token');
 
     const fetchData = async () => {

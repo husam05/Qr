@@ -7,7 +7,10 @@ const PublicProfile = () => {
     const { slug } = useParams();
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
-    const API_URL = import.meta.env.VITE_API_URL;
+    
+    // Force correct API URL
+    const API_URL = 'https://qr-enwn.onrender.com';
+    // const API_URL = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
         const fetchData = async () => {

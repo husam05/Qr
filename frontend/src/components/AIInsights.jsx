@@ -5,7 +5,11 @@ import { Brain, TrendingUp, AlertCircle, CheckCircle, Info, Sparkles, Zap } from
 const AIInsights = ({ links }) => {
     const [insights, setInsights] = useState(null);
     const [loading, setLoading] = useState(true);
-    const API_URL = import.meta.env.VITE_API_URL;
+    
+    // Force correct API URL
+    const API_URL = 'https://qr-enwn.onrender.com';
+    // const API_URL = import.meta.env.VITE_API_URL;
+
     const token = localStorage.getItem('token');
 
     useEffect(() => {
